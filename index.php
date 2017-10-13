@@ -23,9 +23,12 @@
 				have a beer, or find new fun local things to do. She is a registered user of Reddit, but mainly uses Reddit for entertainment,
 				viewing funny posts and memes, or finding local events and happenings. She is primarily passive user, rarely posting herself, 				instead preferring to use her Twitter account for her personal musings. She does, however, respond and ask questions in threads when 				they're related to local events, concerts, and meetups that she is interested in.</p>
 		<h1>User Story</h1>
-		<p>As a registered user, Karissa wants to be able to respond to posts about events, saying that she will be attending.</p>
+		<p>As a registered user, Karissa wants to be able to respond to posts/comment threads about events, to ask questions about the event.</p>
 		<h1>Use Case/Interaction Flow</h1>
-		<p></p>
+			<ol>
+				<li>Karissa clicks on the comment text area to fill out the comment field with her question. If she is responding to a particular comment in a thread, she clicks the reply link beneath the respective comment.</li>
+			</ol>
+
 		<h1>Conceptual Model</h1>
 		<p></p>
 	</body>
