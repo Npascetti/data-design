@@ -21,9 +21,9 @@
 				on her phone, noting the idiosyncracies of Albuquerque compared with the midwest where she hails from.</p>
 			<p>Karissa likes the people that she works with, but wants to branch out and meet new friends to be able to go see a concert with,
 				have a beer, or find new fun local things to do. She is a registered user of Reddit, but mainly uses Reddit for entertainment,
-				viewing funny posts and memes, or finding local events and happenings. She is mainly a passive user of Reddit, rarely posting herself, 				instead preferring to use her Twitter account for her personal musings </p>
+				viewing funny posts and memes, or finding local events and happenings. She is primarily passive user, rarely posting herself, 				instead preferring to use her Twitter account for her personal musings. She does, however, respond and ask questions in threads when 				they're related to local events, concerts, and meetups that she is interested in.</p>
 		<h1>User Story</h1>
-		<p></p>
+		<p>As a registered user, Karissa wants to be able to respond to posts about events, saying that she will be attending.</p>
 		<h1>Use Case/Interaction Flow</h1>
 		<p></p>
 		<h1>Conceptual Model</h1>
