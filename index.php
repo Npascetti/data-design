@@ -61,5 +61,12 @@
 						<li>commentDateTime</li>
 						<li>commentContent</li>
 					</ul>
+			<h2>Relations</h2>
+				<ul>
+					<li>One profile can create many posts. (1 to n)</li>
+					<li>Many profiles can comment on many posts. (m to n)</li>
+					<li>One post can have many comments. (1 to n)</li>
+					<li>Many comments can have many comments. (m to n)</li>
+				</ul>
 	</body>
 </html>
