@@ -4,3 +4,7 @@ header {
 	background-color: #E3DBDB;
 
 }
+
+nav.ul {
+	list-style: none;
+}
