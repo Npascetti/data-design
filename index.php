@@ -3,17 +3,21 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Nick Pascetti's Data Design Project</title>
+		<link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
 	</head>
+	<header>
+		<h1>Nick Pascetti's Data Design Project</h1>
+	</header>
 	<body>
 		<h1>Persona</h1>
 			<ul>
-					<li>Name: Karissa</li>
-					<li>Age: 25</li>
-					<li>Education: BA Anthropology</li>
-					<li>Occupation: Barista</li>
-					<li>Technology: MacBook Air, iPhone 8</li>
-					<li>Hobbies: Cycling, local music, craft beer</li>
-					<li>Relationship Status: Single</li>
+				<li><strong>Name:</strong> Karissa</li>
+					<li><strong>Age:</strong>  25</li>
+					<li><strong>Education:</strong>  BA Anthropology</li>
+					<li><strong>Occupation:</strong>  Barista</li>
+					<li><strong>Technology:</strong>  MacBook Air, iPhone 8</li>
+					<li><strong>Hobbies:</strong>  Cycling, local music, craft beer</li>
+					<li><strong>Relationship Status:</strong>  Single</li>
 			</ul>
 			<p>Karissa is a recent transplant to Albuquerque from ..., and is looking to meet new people and find fun things to do locally.
 				She is currently working as a barista at a local coffee shop, but is looking for employment in her field. She moved to Albuquerque
