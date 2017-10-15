@@ -9,8 +9,8 @@
 		<h1>Nick Pascetti's Data Design Project</h1>
 		<nav>
 			<ul>
-			<li><a href="https://www.reddit.com/r/Albuquerque/comments/75q2kp/hows_verizon_tmobile_celldata_coverage_aibf_field/">Example Reddit Post</a></li>
-			<li><a href="https://github.com/Npascetti/data-design">Github Data Design Repository</a></li>
+				<li><a href="https://www.reddit.com/r/Albuquerque/comments/75q2kp/hows_verizon_tmobile_celldata_coverage_aibf_field/">Example Reddit Post</a></li>
+				<li><a href="https://github.com/Npascetti/data-design">GitHub Data Design Repository</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -18,12 +18,12 @@
 		<h1>Persona</h1>
 			<ul>
 				<li><strong>Name:</strong> Karissa</li>
-					<li><strong>Age:</strong>  25</li>
-					<li><strong>Education:</strong>  BA Anthropology</li>
-					<li><strong>Occupation:</strong>  Barista</li>
-					<li><strong>Technology:</strong>  MacBook Air, iPhone 8</li>
-					<li><strong>Hobbies:</strong>  Cycling, local music, craft beer</li>
-					<li><strong>Relationship Status:</strong>  Single</li>
+				<li><strong>Age:</strong>  25</li>
+				<li><strong>Education:</strong>  BA Anthropology</li>
+				<li><strong>Occupation:</strong>  Barista</li>
+				<li><strong>Technology:</strong>  MacBook Air, iPhone 8</li>
+				<li><strong>Hobbies:</strong>  Cycling, local music, craft beer</li>
+				<li><strong>Relationship Status:</strong>  Single</li>
 			</ul>
 			<p>Karissa is a recent transplant to Albuquerque from ..., and is looking to meet new people and find fun things to do locally.
 				She is currently working as a barista at a local coffee shop, but is looking for employment in her field. She moved to Albuquerque

@@ -1,10 +1,34 @@
 /* color pallete - #E3DBDB gainsboro, #C9D5B5 pale silver, #9F9F92 spanish gray, #6D6466 granite gray, #4E3D42 dark puce */
 
 header {
-	background-color: #E3DBDB;
+	background-color: #C9D5B5;
 
 }
 
-nav.ul {
-	list-style: none;
+h1 {
+	border-bottom: .1em solid;
+	border-color: #4E3D42
+}
+
+h2, h3 {
+	border-bottom: .18em double ;
+	border-color: #4E3D42;
+}
+
+body {
+	background-color: #E3DBDB;
+}
+
+nav {
+	border-bottom: .25em double;
+	border-color: #4E3D42;
+}
+
+header > h1 {
+	text-align: center;
+}
+
+nav > ul {
+	list-style-type: none;
+	text-align: center;
 }
