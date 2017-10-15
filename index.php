@@ -34,14 +34,32 @@
 				<li>The site then displays her comment in its own thread beneath the original post if it was responding directly to the original post. If her comment was repsonding to another comment thread, then her comment displays beneath the comment she was responding to.</li>
 			</ul>
 		<h1>Conceptual Model</h1>
-			<h2>Post</h2>
-				<ul>
-					<li>postId</li>
-					<li></li>
-				</ul>
-			<h2>Comment</h2>
-				<ul>
-					<li>commentId</li>
-				</ul>
+			<h2>Entities & Attributes</h2>
+				<h3>Profile</h3>
+					<ul>
+						<li>profileId (primary key)</li>
+						<li>profileUserName</li>
+						<li>profileAvatar</li>
+						<li>profileHash</li>
+						<li>profileSalt</li>
+						<li>profileActivationToken</li>
+					</ul>
+				<h3>Post</h3>
+					<ul>
+						<li>postId (primary key)</li>
+						<li>postProfileId (foreign key)</li>
+						<li>postContent</li>
+						<li>postDateTime</li>
+						<li>postTitle</li>
+					</ul>
+				<h3>Comment</h3>
+					<ul>
+						<li>commentId (primary key)</li>
+						<li>commentProfileId (foreign key)</li>
+						<li>commentPostId (foreign key)</li>
+						<li>commentCommentId (foreign key)</li>
+						<li>commentDateTime</li>
+						<li>commentContent</li>
+					</ul>
 	</body>
 </html>
