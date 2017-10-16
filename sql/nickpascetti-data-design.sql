@@ -8,3 +8,31 @@ CREATE TABLE profile (
 	UNIQUE(profileUserName),
 	PRIMARY KEY(profileId)
 );
+
+CREATE TABLE post (
+	postId BINARY(16) NOT NULL,
+	postProfileId BINARY(16) NOT NULL,
+	postContent VARCHAR(40000) NOT NULL,
+	postDateTime DATETIME(6) NOT NULL,
+	postTitle VARCHAR(500) NOT NULL,
+	INDEX (postProfileId) REFERNCES profile(profileId),
+	PRIMARY KEY (postId)
+);
+
+CREATE TABLE comment (
+	commentId BINARY(16) NOT NULL,
+	commentProfileId BINARY(16) NOT NULL,
+	commentPostId BINARY(16) NOT NULL,
+	commentCommentId BINARY(16) NOT NULL,
+	commentDateTime DATETIME(6) NOT NULL,
+	commentContent VARCHAR(40000) NOT NULL,
+	INDEX(commentProfileId),
+	INDEX(commentPostId),
+	INDEX(commentCommentId),
+	FOREIGN KEY(commentProfileId) REFERENCES profile(profileId),
+	FOREIGN KEY(commentPostId) REFERENCES post(postId),
+	FOREIGN KEY(commentCommentId) REFERENCES comment(commentId),
+	PRIMARY KEY(commentId)
+
+
+)
