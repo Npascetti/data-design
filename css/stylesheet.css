@@ -19,9 +19,9 @@ body {
 	background-color: #E3DBDB;
 }
 
-nav {
-	border-bottom: .25em double;
-	border-color: #4E3D42;
+header {
+	border: .25em double #4E3D42;
+	border-radius: .2em;
 }
 
 header > h1 {

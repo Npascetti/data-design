@@ -25,10 +25,10 @@
 				<li><strong>Hobbies:</strong>  Cycling, local music, craft beer</li>
 				<li><strong>Relationship Status:</strong>  Single</li>
 			</ul>
-			<p>Karissa is a recent transplant to Albuquerque from ..., and is looking to meet new people and find fun things to do locally.
+			<p>Karissa is a recent transplant to Albuquerque from Sioux Falls, South Dakota, and is looking to meet new people and find fun things to do locally.
 				She is currently working as a barista at a local coffee shop, but is looking for employment in her field. She moved to Albuquerque
 				after college mainly to get a "new perspective" and because she "needed a change of scenery." She is always tweeting quippy observations
-				on her phone, noting the idiosyncracies of Albuquerque compared with the midwest where she hails from.</p>
+				on her phone, noting the idiosyncracies of Albuquerque compared with the Midwest where she hails from.</p>
 			<p>Karissa likes the people that she works with, but wants to branch out and meet new friends to be able to go see a concert with,
 				have a beer, or find new fun local things to do. She is a registered user of Reddit, but mainly uses Reddit for entertainment,
 				viewing funny posts and memes, or finding local events and happenings. She is primarily passive user, rarely posting herself, instead preferring to use her Twitter 				account for her personal musings. She does, however, ask questions in posts and comment threads when she has a specific question regarding an event she is 				interested in, i.e., should I arrive early to Geeks Who Drink to make sure I get a seat, or is it usually not too crowded?</p>
@@ -76,7 +76,7 @@
 					<li>One profile can create many posts. (1 to n)</li>
 					<li>Many profiles can comment on many posts. (m to n)</li>
 					<li>One post can have many comments. (1 to n)</li>
-					<li>Many comments can have many comments. (m to n)</li>
+					<li>One comment can have many comments. (1 to n)</li>
 				</ul>
 	</body>
 </html>
