@@ -77,5 +77,7 @@
 					<li>One post can have many comments. (1 to n)</li>
 					<li>One comment can have many comments. (1 to n)</li>
 				</ul>
+		<h1>Entity Relationship Diagram</h1>
+			<img src="images/datadesign-erd.svg" />
 	</body>
 </html>
