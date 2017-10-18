@@ -15,7 +15,8 @@ CREATE TABLE post (
 	postContent VARCHAR(40000) NOT NULL,
 	postDateTime DATETIME(6) NOT NULL,
 	postTitle VARCHAR(500) NOT NULL,
-	INDEX (postProfileId) REFERENCES profile(profileId),
+	INDEX (postProfileId),
+	FOREIGN KEY(postProfileId) REFERENCES profile(profileId),
 	PRIMARY KEY (postId)
 );
 
@@ -40,17 +41,42 @@ CREATE TABLE comment (
 INSERT INTO profile(profileUserName)
 	VALUE("nickynack");
 
+INSERT INTO comment(commentId)
+	VALUE(UNHEX(REPLACE("96096036-e35b-4e2e-8bf9-2f964fbb030b", "-", "")));
+
+INSERT INTO post(postId)
+	VALUE(UNHEX(REPLACE("25a61b98-2bd1-4875-9b74-8d8c6322b00b", "-", "")));
+
+
 -- DELETE VERB SECTION
 
 DELETE FROM post WHERE postTitle = "Does this look infected to you?";
 
+DELETE FROM comment WHERE commentContent = "Barney Gumble is the MVP of Season 3";
+
+DELETE FROM profile WHERE profileUserName = "nickynack";
+
 -- UPDATE VERB SECTION
 
 UPDATE profile
-	SET profileUserName = nickitynicknack;
+SET profileUserName = "nickitynicknack";
+
+UPDATE comment
+SET commentContent = "No Homers Allowed!!";
+
+UPDATE post
+SET postTitle = "Updated: No, everything is okay";
 
 -- SELECT VERB SECTION
 
 SELECT commentContent
 FROM comment
 WHERE commentDateTime = "2016-12-31 23:59:59";
+
+SELECT postTitle
+FROM post
+WHERE postId = "25a61b982bd148759b748d8c6322b00b";
+
+SELECT profileId
+FROM profile
+WHERE profileUserName = "nickitynicknack";
