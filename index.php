@@ -78,6 +78,6 @@
 					<li>One comment can have many comments. (1 to n)</li>
 				</ul>
 		<h1>Entity Relationship Diagram</h1>
-			<img src="images/datadesign-erd.svg" />
+			<img src="images/datadesign-erd.svg" alt="an entity relationship diagram describing flow between profile comment and post" name="Reddit profile/post/comment ERD" height="60%" width="60%" />
 	</body>
 </html>

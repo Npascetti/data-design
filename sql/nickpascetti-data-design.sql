@@ -2,7 +2,7 @@ CREATE TABLE profile (
 	profileId BINARY(16) NOT NULL,
 	profileActivationToken CHAR(32),
 	profileUserName VARCHAR(32) NOT NULL,
-	profileAvatar MEDIUMBLOB(4e+6),
+	profileAvatar VARCHAR(32),
 	profileHash CHAR(128) NOT NULL,
 	profileSalt CHAR(64) NOT NULL,
 	UNIQUE(profileUserName),
@@ -15,7 +15,8 @@ CREATE TABLE post (
 	postContent VARCHAR(40000) NOT NULL,
 	postDateTime DATETIME(6) NOT NULL,
 	postTitle VARCHAR(500) NOT NULL,
-	INDEX (postProfileId) REFERENCES profile(profileId),
+	INDEX (postProfileId),
+	FOREIGN KEY(postProfileId) REFERENCES profile(profileId),
 	PRIMARY KEY (postId)
 );
 
