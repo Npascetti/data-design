@@ -44,40 +44,40 @@
 				<li>The site then displays her comment in its own thread beneath the original post if it was responding directly to the original post. If her comment was repsonding 				to another comment thread, then her comment displays beneath the comment she was responding to.</li>
 			</ul>
 		<h1>Conceptual Model</h1>
-			<h2>Entities & Attributes</h2>
-				<h3>Profile</h3>
-					<ul>
-						<li>profileId (primary key)</li>
-						<li>profileUserName</li>
-						<li>profileAvatar</li>
-						<li>profileHash</li>
-						<li>profileSalt</li>
-						<li>profileActivationToken</li>
-					</ul>
-				<h3>Post</h3>
-					<ul>
-						<li>postId (primary key)</li>
-						<li>postProfileId (foreign key)</li>
-						<li>postContent</li>
-						<li>postDateTime</li>
-						<li>postTitle</li>
-					</ul>
-				<h3>Comment</h3>
-					<ul>
-						<li>commentId (primary key)</li>
-						<li>commentProfileId (foreign key)</li>
-						<li>commentPostId (foreign key)</li>
-						<li>commentCommentId (foreign key)</li>
-						<li>commentDateTime</li>
-						<li>commentContent</li>
-					</ul>
-			<h2>Relations</h2>
-				<ul>
-					<li>One profile can create many posts. (1 to n)</li>
-					<li>One post can have many comments. (1 to n)</li>
-					<li>One comment can have many comments. (1 to n)</li>
-				</ul>
+		<h2>Entities & Attributes</h2>
+		<h3>Profile</h3>
+			<ul>
+				<li>profileId (primary key)</li>
+				<li>profileUserName</li>
+				<li>profileAvatar</li>
+				<li>profileHash</li>
+				<li>profileSalt</li>
+				<li>profileActivationToken</li>
+			</ul>
+		<h3>Post</h3>
+			<ul>
+				<li>postId (primary key)</li>
+				<li>postProfileId (foreign key)</li>
+				<li>postContent</li>
+				<li>postDateTime</li>
+				<li>postTitle</li>
+			</ul>
+		<h3>Comment</h3>
+			<ul>
+				<li>commentId (primary key)</li>
+				<li>commentProfileId (foreign key)</li>
+				<li>commentPostId (foreign key)</li>
+				<li>commentCommentId (foreign key)</li>
+				<li>commentDateTime</li>
+				<li>commentContent</li>
+			</ul>
+		<h2>Relations</h2>
+			<ul>
+				<li>One profile can create many posts. (1 to n)</li>
+				<li>One post can have many comments. (1 to n)</li>
+				<li>One comment can have many comments. (1 to n)</li>
+			</ul>
 		<h1>Entity Relationship Diagram</h1>
-			<img src="images/datadesign-erd.svg" alt="an entity relationship diagram describing flow between profile comment and post" name="Reddit profile/post/comment ERD" height="60%" width="60%" />
+			<img src="images/datadesignerd.svg" alt="an entity relationship diagram describing flow between profile comment and post" name="Reddit profile/post/comment ERD" height="60%" width="60%" />
 	</body>
 </html>
