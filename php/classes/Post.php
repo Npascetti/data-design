@@ -126,15 +126,16 @@ class Post {
 	 * @return string value of post content
 	 **/
 	public function getPostContent() : string {
-		return($this->tweetContent);
+		return($this->postContent);
 	}
 
 	/**
-	 * mutator method for tweet content
+	 * mutator method for post content
 	 *
 	 * @param string $newPostContent new value of post content
 	 * @throws \InvalidArgumentException if $newPostContent is not a string or insecure
-	 * @throws \RangeException if $newPostContent is not a string
+	 * @throws \RangeException if $newPostContent is > 40000 characters
+	 * @throws \TypeError if $newPostContent is not a string
 	 **/
 
 	public function setPostContent(string $newPostContent) : void {
@@ -168,6 +169,24 @@ class Post {
 	 *
 	 * @param string $newPostTitle new value of post title
 	 * @throws \InvalidArgumentException if $newPostTitle is not a string or insecure
-	 */
+	 * @throws \RangeException if $newPostTitle is > 500 characters
+	 * @throws \TypeError if $newPostTitle is not a string
+	 **/
+	public function setPostTitle(string $newPostTitle) : void {
+		//verify the post title is secure
+		$newPostTitle = trim($newPostTitle);
+		$newPostTitle = filter_var($newPostTitle, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newPostTitle) === true) {
+			throw(new \InvalidArgumentException("post title is empty or insecure"));
+		}
+
+		//verify the post title will fit in the database
+		if(strlen($newPostTitle) > 500) {
+			throw(new \RangeException("post title is too large"));
+		}
+
+		//store the post title
+		$this->postTitle = $newPostTitle;
+	}
 }
 ?>
