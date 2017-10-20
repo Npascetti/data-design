@@ -94,9 +94,9 @@ class Post {
 	/**
 	 * accessor method for post profile id
 	 *
-	 * @return Uuid value of tweet profile id
+	 * @return Uuid value of post profile id
 	 **/
-	public function getPostProfileId() : Uuid{
+	public function getPostProfileId() : Uuid {
 		return($this->postProfileId);
 	}
 
