@@ -1,6 +1,6 @@
 <?php
-
 require "../../vendor/autoload.php";
+
 use Ramsey\Uuid\Uuid;
 /**
  *A post on Reddit
@@ -114,12 +114,12 @@ class Post {
 			$uuid = self::validateUuid($newPostProfileId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception)
 		{
-			exceptionType = get_class($exception);
-			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+			/*exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));*/
 		}
 
 		//convert and store the profile id
-		$this->postProfileId = $uuid
+		$this->postProfileId = $uuid;
 	}
 
 	/**
@@ -218,8 +218,8 @@ class Post {
 		try {
 			$newPostDateTime = self::validateDateTime($newPostDateTime);
 		} catch(\InvalidArgumentException | \RangeException $exception) {
-			$exceptionType = get_class($exception;)
-			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+			/*$exceptionType = get_class($exception:)
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));*/
 		}
 		$this->postDateTime = $newPostDateTime;
 	}
