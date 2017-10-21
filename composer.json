@@ -1,0 +1,8 @@
+{
+  "autoload": {
+    "classmap": [
+      "php/Classes",
+      "php/traits"
+    ]
+  }
+}
