@@ -1,8 +1,12 @@
 {
   "autoload": {
     "classmap": [
-      "php/Classes",
+      "php/classes",
       "php/traits"
     ]
+  },
+  "require": {
+    "ramsey/uuid": "@stable"
   }
+
 }
