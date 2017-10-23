@@ -118,7 +118,7 @@ class Post {
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));*/
 		}
 
-		//convert and store the profile id
+		//convert and store the post profile id
 		$this->postProfileId = $uuid;
 	}
 
