@@ -32,6 +32,11 @@ class Profile {
 	 * @var string $profileSalt
 	 **/
 	private $profileSalt;
+	/**
+	 * activation token for the profile
+	 * @var string $profileActivationToken
+	 **/
+	private $profileActivationToken;
 
 	/**
 	 * constructor for this Profile
@@ -39,8 +44,15 @@ class Profile {
 	 * @param string | Uuid $newProfileId id of this Profile or null if a new profile
 	 * @param string $newProfileUserName string containing the profile username
 	 * @param string $newProfileAvatar string containing link to profile avatar image or null if unused
-	 * @param string $newProfileHash string containing the profile password hash
+	 * @param string | null $newProfileHash string containing the profile password hash
 	 * @param string $newProfileSalt string containing the profile password salt
-	 */
+	 * @throws \InvalidArgumentException if data types are not valid
+	 * @throws \RangeException if data values are out of bounds (e.g., string too long, negative integers)
+	 * @throws \TypeError if data types violate type hints
+	 * @throws \Exception if some other exception occurs
+	 * @documentation php.net/manual/en/language.oop5.decon.php
+	 **/
+	public function __construct($newProfileId, string $newProfileUserName, string $newProfileAvatar, string $newProfileHash, string $newProfileSalt, string $newProfileActivationToken) {
+	}
 }
 ?>
