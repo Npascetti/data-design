@@ -52,7 +52,24 @@ class Profile {
 	 * @throws \Exception if some other exception occurs
 	 * @documentation php.net/manual/en/language.oop5.decon.php
 	 **/
-	public function __construct($newProfileId, string $newProfileUserName, string $newProfileAvatar, string $newProfileHash, string $newProfileSalt, string $newProfileActivationToken) {
+	public function __construct($newProfileId, string $newProfileUserName, string $newProfileAvatar = null, string $newProfileHash, string $newProfileSalt, string $newProfileActivationToken) {
+		try {
+			$this->setProfileId($newProfileId);
+			$this->setProfileUserName($newProfileUserName);
+			$this->setProfileAvatar($newProfileAvatar);
+			$this->setProfileHash($newProfileHash);
+			$this->setProfileSalt($newProfileSalt);
+			$this->setProfileActivationToken($newProfileActivationToken);
+		}
+		//determine what exception type was thrown
+		catch(\InvalidArgumentException | \RangeException | Exception | \TypeError $exception)
+		{
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
 	}
+	/**
+	 * accessor method for profile id
+	 **/
 }
 ?>
