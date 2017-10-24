@@ -454,7 +454,32 @@ class Post {
 	 * @return \SplFixedArray SplFixedArray of Posts found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data types
-	 */
+	 **/
+	public static function getAllPosts(\PDO $pdo) : \SplFixedArray {
+		// create query template
+		$query = "SELECT postId, postProfileId, postContent, postDateTime FROM post";
+		$statement = $pdo->prepare($query);
+		$statement->execute();
+
+		// build an array of posts
+		$posts = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$post = new Post($row["postId"], $row["postProfileId"], $row["postTitle"], $row["postContent"], $row["postDateTime"]);
+				$posts[$posts->key()] = $post;
+				$posts->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($posts);
+	}
+
+	/**
+	 *
+	 **/
 }
 
 
