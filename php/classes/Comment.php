@@ -70,7 +70,35 @@ class Comment {
 	}
 
 	/**
+	 *accessor method for comment id
 	 *
+	 * @return Uuid value of comment id
+	 **/
+	public function getCommentId() : Uuid {
+		return($this->commentId);
+	}
+
+	/**
+	 * mutator method for comment id
+	 *
+	 * @param Uuid/string $newCommentId new value of comment id
+	 * @throws \RangeException if $newCommentId is not positive
+	 * @throws \TypeError if $newPostId is not a uuid or string
+	 **/
+	public function setCommentId($newCommentId) : void {
+		try {
+			$uuid = self::validateUuid($newCommentId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+
+		// convert and store the comment id
+		$this->commentId = $uuid;
+	}
+
+	/**
+	 * accessor method for post profile id
 	 **/
 }
 
