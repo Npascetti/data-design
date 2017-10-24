@@ -403,8 +403,34 @@ class Post {
 	}
 
 	/**
-	 * gets all Posts
-	 */
+	 * gets the Post by title
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $postTitle post title to search for
+	 * @return \SplFixedArray SplFixedArray of Tweets found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getPostByPostTitle(\PDO $pdo, string $postTitle) : \SplFixedArray {
+		// sanitize the description before searching
+		$postTitle = trim($postTitle);
+		$postTitle = filter_var($postTitle, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($postTitle) === true) {
+			throw(new \PDOException("post title is invalid"));
+		}
+
+		// escape any mySQL wild cards
+		$postTitle = str_replace("_" "\\_", str_replace("%", "\\%", $postTitle));
+
+		// create query template
+		$query = "SELECT postId, postProfileId, postTitle, postContent, postDateTime FROM post WHERE postTitle LIKE :postTitle";
+		$statement = $pdo->prepare($query);
+
+		// bind the post title to the place holder in the template
+		$postTitle = "%$postTitle%";
+		$parameters = ["postTitle" => $postTitle];
+		$statement->execute($parameters);
+	}
 }
 
 
