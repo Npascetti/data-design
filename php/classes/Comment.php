@@ -53,8 +53,25 @@ class Comment {
 	 * @throws \Exception if some other exception occurs
 	 * @documentation https://php.net/manua;/en/language.oop5.decon.php
 	 **/
-	public function __construct($newCommentId, $newCommentProfileId, $newCommentPostId, $newCommentCommentId, string $newCommentContent, $newCommentDateTime) {
+	public function __construct($newCommentId, $newCommentProfileId, $newCommentPostId, $newCommentCommentId, string $newCommentContent, $newCommentDateTime = null) {
+		try {
+			$this->setCommentId($newCommentId);
+			$this->setCommentProfileId($newCommentProfileId);
+			$this->setCommentPostId($newCommentPostId);
+			$this->setCommentCommentId($newCommentCommentId);
+			$this->setCommentContent($newCommentContent);
+			$this->setCommentDateTime($newCommentDateTime);
+		}
+		//determine what exception type was thrown
+		catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
 	}
+
+	/**
+	 *
+	 **/
 }
 
 ?>
