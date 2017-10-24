@@ -237,7 +237,16 @@ class Post {
 		$statement = $pdo->prepare($query);
 
 		//bind the member variables to the placeholders in the template
+		$formattedDateTime = $this->postDateTime->format("Y-m-d H:i:s.u");
+		$parameters = ["postId" => $this->postId->getBytes(), "postProfileId" => $this->postProfileId->getBytes(), "postTitle" => $this->postTitle, "postContent" => $this->postContent, "postDateTime" => $formattedDateTime];
+		$statement->execute($parameters);
 	}
+
+	/**
+	 * deletes this post from mySQL
+	 *
+	 *
+	 */
 }
 
 
