@@ -319,7 +319,47 @@ class Post {
 
 	/**
 	 * gets the Post by profile id
-	 */
+	 *
+	 *
+	 * @param \PDO $pdo connection object
+	 * @param Uuid | string $postProfileId profile id to search by
+	 * @return \SplFixedArray SplFixedArray of Tweets found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getPostbyPostProfileId(\PDO $pdo, $postProfileId) : \SplFixedArray {
+
+		try {
+			$postProfileId = self::validateUuid($postProfileId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		// create query template
+		$query = "SELECT postId, postProfileId, postTitle, postContent, postDateTime FROM post WHERE postProfileId = :postProfileId";
+		$statement = $pdo->prepare($query);
+		// bind the post profile id to the place holder in the template
+		$parameters = ["postProfileId" => $postProfileId->getBytes()];
+		$statement->execute($parameters);
+		// build an array of posts
+		$posts = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$post = new Post($row["postId"], $row["postProfileId"], $row["postTitle"], $row["postContent"], $row["postDateTime"]);
+				$posts[$posts->key()] = $post;
+				$posts->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($posts);
+	}
+
+	/**
+	 * gets the Post by content
+	 **/
 }
 
 
