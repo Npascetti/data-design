@@ -245,8 +245,19 @@ class Post {
 	/**
 	 * deletes this post from mySQL
 	 *
-	 *
-	 */
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \ TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo) : void{
+
+		// create query template
+		$query = "DELETE FROM post WHERE postId = :postId";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["postId" => $this->postId->getBytes()];
+		$statement->execute($parameters);
+	}
 }
 
 

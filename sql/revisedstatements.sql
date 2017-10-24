@@ -115,6 +115,6 @@ WHERE commentProfileId =
 
 -- A statement deleting post rows by the associated postDateTime
 DELETE FROM post
-WHERE postDateTime = 101112;
+WHERE postId = UNHEX(REPLACE("5313feb5-6adc-487d-99ec-b1e804843c1e", "-", ""));
 
 
