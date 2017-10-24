@@ -359,7 +359,30 @@ class Post {
 
 	/**
 	 * gets the Post by content
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $postContent post content to search for
+	 * @return \SplFixedArray SplFixedArray of Posts found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
 	 **/
+	public static function getPostbyPostContent(\PDO $pdo, string $postContent) : \SplFixedArray {
+		// sanitize the description before searching
+		$postContent = trim($postContent);
+		$postContent = filter_var($postContent, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($postContent) === true) {
+			throw(new \PDOException("post content is invalid"));
+		}
+
+		//escape any mySQL wild cards
+		$postContent = str_replace("_", "\\_", str_replace("%", "\\%", $postContent));
+
+		// create query template
+		$query = "SELECT postId, postProfileId, postTitle, postContent, postDateTime FROM post WHERE postContent LIKE :postContent";
+		$statement = $pdo->prepare($query);
+
+		//bind the tweet content to the place holder in the template
+	}
 }
 
 
