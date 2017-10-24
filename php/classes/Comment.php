@@ -215,6 +215,24 @@ class Comment {
 		$this->commentContent = $newCommentContent;
 	}
 
+	/**
+	 * accessor method for comment date time
+	 *
+	 * @return \DateTime value of comment date time
+	 **/
+	public function getCommentDateTime() : \DateTime {
+		return($this->commentDateTime);
+	}
+
+	/**
+	 * mutator method for comment date time
+	 *
+	 * @param \DateTime | string | null $newCommentDateTime comment date time as a DateTime object or string (or null to load the current time)
+	 * @throws \InvalidArgumentException if $newCommentDateTime is not a valid object or string
+	 * @throws \RangeException if $newCommentDateTime is a date that does not exist
+	 **/
+	public fun
+
 
 }
 
