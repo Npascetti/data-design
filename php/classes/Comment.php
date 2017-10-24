@@ -136,7 +136,52 @@ class Comment {
 
 	/**
 	 * mutator method for comment post id
+	 *
+	 * @param string | Uuid $newCommentPostId new value of comment post id
+	 * @throws \RangeException if $newCommentPostId is not positive
+	 * @throws \TypeError if $newCommentPostId is not an integer
 	 **/
+	public function setCommentPostId($newCommentPostId) : void {
+		try {
+			$uuid = self::validateUuid($newCommentPostId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+
+		//convert and store the comment profile id
+		$this->commentPostId = $uuid;
+	}
+
+	/**
+	 * accessor method for comment comment id
+	 *
+	 * @return Uuid value of comment comment id
+	 **/
+	public function getCommentCommentId() : Uuid{
+		return($this->commentCommentId);
+	}
+
+	/**
+	 * mutator method for comment comment id
+	 *
+	 * @param string | Uuid $newCommentCommentId new value of comment comment id
+	 * @throws \RangeException if $newCommentCommentId is not positive
+	 * @throws \TypeError if $newCommentCommentId is not an integer
+	 **/
+	public function setCommentCommentId($newCommentCommentId) : void {
+		try {
+			$uuid = self::validateUuid($newCommentCommentId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+
+		// convert and store the comment comment id
+		$this->commentCommentId = $uuid;
+	}
+
+
 }
 
 ?>
