@@ -478,8 +478,20 @@ class Post {
 	}
 
 	/**
+	 *formats the state variables for JSON serialization
 	 *
+	 * @return array resulting state variables to serialize
 	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+
+		$fields["postId"] = $this->postId->toString();
+		$fields["postProfileId"] = $this->postProfileId->toString();
+
+		//formate the date so that the ront end can consume it
+		$fields["postDateTime"] = round(floatval($this->postDateTime->format("U.u")) * 1000);
+		return($fields);
+	}
 }
 
 
