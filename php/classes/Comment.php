@@ -98,7 +98,44 @@ class Comment {
 	}
 
 	/**
-	 * accessor method for post profile id
+	 * accessor method for comment profile id
+	 *
+	 * @return Uuid value of comment profile id
+	 **/
+	public function getCommentProfileId() : Uuid {
+		return($this->commentProfileId);
+	}
+
+	/**
+	 * mutator method for comment profile id
+	 *
+	 * @param string | Uuid $newCommentProfileId new value of comment profile id
+	 * @throws \RangeException if $newCommentProfileId is not positive
+	 * @throws \TypeError if $newCommentProfileId is not an integer
+	 **/
+	public function setCommentProfileId($newCommentProfileId) : void {
+		try {
+			$uuid = self::validateUuid($newCommentProfileId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+
+		//convert and store the comment profile id
+		$this->commentProfileId = $uuid;
+	}
+
+	/**
+	 * accessor method for comment post id
+	 *
+	 * @return Uuid value of comment post id
+	 **/
+	public function getCommentPostId() : Uuid{
+		return($this->commentPostId);
+	}
+
+	/**
+	 * mutator method for comment post id
 	 **/
 }
 
