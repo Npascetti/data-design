@@ -279,7 +279,23 @@ class Post {
 
 	/**
 	 *gets the post by postId
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid | string $postId post id to search for
+	 * @return Post | null Post found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when a variable is not correct data type
 	 */
+	public static function getPostbyPostId(\PDO $pdo, $postId) : ?Post {
+		// sanitize the postId before searching
+		try {
+			$postId = self::validateUuid($postId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		//create query template
+	}
 }
 
 
