@@ -258,6 +258,28 @@ class Post {
 		$parameters = ["postId" => $this->postId->getBytes()];
 		$statement->execute($parameters);
 	}
+
+	/**
+	 * updates this Post in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) : void {
+
+		//create query template
+		$query = "UPDATE post SET postProfileId = :postProfileId, postTitle = :postTitle, postContent = :postContent, postDateTime = :postDateTime WHERE postId = :postId";
+		$statement = $pdo->prepare($query);
+
+		$formattedDateTime = $this->postDateTime->format("Y-m-d H:i:s.u");
+		$parameters = ["postId" => $this->postId->getBytes(), "postProfileId" => $this->postProfileId->getBytes(), "postTitle" => $this->postTitle, "postContent" => $this->postContent, "postDateTime" => $formattedDateTime];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 *gets the post by postId
+	 */
 }
 
 
