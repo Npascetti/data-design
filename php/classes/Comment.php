@@ -40,8 +40,21 @@ class Comment {
 	private $commentDateTime;
 
 	/**
-	 * constructor
-	 */
+	 * constructor for this Comment
+	 *
+	 * @param string | Uuid $newCommentId id of this Comment or null if a new Comment
+	 * @param string | Uuid $newCommentProfileId id of the profile that created this Comment
+	 * @param string | Uuid $newCommentPostId id of the Post that the comment originates from
+	 * @param string | Uuid $newCommentCommentId id of the Comment that is the parent of the created comment
+	 * @param \DateTime | string | null $newCommentDateTime date and time Comment was created or null if set to current date and time
+	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
+	 * @throws \InvalidArgumentException if data types are not valid
+	 * @throws \TypeError if data types violate type hints
+	 * @throws \Exception if some other exception occurs
+	 * @documentation https://php.net/manua;/en/language.oop5.decon.php
+	 **/
+	public function __construct($newCommentId, $newCommentProfileId, $newCommentPostId, $newCommentCommentId, string $newCommentContent, $newCommentDateTime) {
+	}
 }
 
 ?>
