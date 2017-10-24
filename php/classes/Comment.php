@@ -231,7 +231,22 @@ class Comment {
 	 * @throws \InvalidArgumentException if $newCommentDateTime is not a valid object or string
 	 * @throws \RangeException if $newCommentDateTime is a date that does not exist
 	 **/
-	public fun
+	public function setCommentDateTime($newCommentDateTime = null) : void {
+		//base case: if the date is null, use the current date and time
+		if($newCommentDateTime === null) {
+			$this->commentDateTime = new \DateTime();
+			return;
+		}
+
+		// store the comment date time using the ValidateDate trait
+		try {
+			$newCommentDateTime = self::validateDateTime($newCommentDateTime);
+		} catch(\InvalidArgumentException | \RangeException $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		$this->commentDateTime = $newCommentDateTime;
+	}
 
 
 }
