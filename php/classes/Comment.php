@@ -192,7 +192,28 @@ class Comment {
 
 	/**
 	 * mutator method for comment content
+	 *
+	 * @param string $newCommentContent new value of comment content
+	 * @throws \InvalidArgumentException if $newCommentContent is not a string or insecure
+	 * @throws \RangeException if $newCommentContent is > 40000 characters
+	 * @throws \TypeError if $newCommentContent is not a string
 	 **/
+	public function setCommentContent(string $newCommentContent) : void {
+		// verify the comment content is secure
+		$newCommentContent = trim($newCommentContent);
+		$newCommentContent = filter_var($newCommentContent, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newCommentContent) === true) {
+			throw(new \InvalidArgumentException("comment content is empty or insecure"));
+		}
+
+		// verify the comment content will fit in the database
+		if(strlen($newCommentContent) > 40000) {
+			throw(new \RangeException("comment content too large"));
+		}
+
+		// store the comment content
+		$this->commentContent = $newCommentContent;
+	}
 
 
 }
