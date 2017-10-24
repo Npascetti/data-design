@@ -223,5 +223,23 @@ class Post {
 		}
 		$this->postDateTime = $newPostDateTime;
 	}
+
+	/**
+	 *inserts this post into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related error occurs
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo) : void {
+		// create query template
+		$query = "INSERT INTO post(postId, postProfileId, postTitle, postContent, postDateTime) VALUES(:postId, :postProfileId, :postTitle, :postContent, :postDateTime)";
+		$statement = $pdo->prepare($query);
+
+		//bind the member variables to the placeholders in the template
+	}
 }
+
+
+
 ?>
