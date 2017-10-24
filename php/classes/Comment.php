@@ -181,6 +181,19 @@ class Comment {
 		$this->commentCommentId = $uuid;
 	}
 
+	/**
+	 * accessor method for comment content
+	 *
+	 * @return string value of comment content
+	 **/
+	public function getCommentContent() : string {
+		return($this->commentContent);
+	}
+
+	/**
+	 * mutator method for comment content
+	 **/
+
 
 }
 
