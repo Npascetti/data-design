@@ -352,7 +352,16 @@ class Comment {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
+	public static function getCommentByCommentProfileId(\PDO $pdo, $commentProfileId) : \SplFixedArray {
 
+		try {
+			$commentProfileId = self::validateUuid($commentProfileId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		// create query template
+	}
 }
 
 ?>
