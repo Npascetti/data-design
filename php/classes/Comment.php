@@ -342,6 +342,17 @@ class Comment {
 		}
 		return($comment);
 	}
+
+	/**
+	 * gets the Comment by profile id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid | string $commentProfileId profile id to search by
+	 * @return \SplFixedArray SplFixedArray of Comments found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+
 }
 
 ?>
