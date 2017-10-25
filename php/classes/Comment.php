@@ -267,6 +267,33 @@ class Comment {
 		$statement->execute($parameters);
 	}
 
+	/**
+	 * deletes this Comment from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo) : void {
+
+		// create query template
+		$query = "DELETE FROM comment WHERE commentId = :commentId";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the place holder in the template
+		$parameters = ["commentId" => $this->commentId->getBytes()];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * update this Comment in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+
+
 
 }
 
