@@ -327,6 +327,20 @@ class Comment {
 		// bind the comment id to the place holder in the template
 		$parameters = ["commentId" => $commentId->getBytes()];
 		$statement->execute($parameters);
+
+		// grab the comment from mySQL
+		try {
+			$comment = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$comment = new Comment($row["commentId"], $row["commentProfileId"], $row["commentPostId"], $row["commentCommentId"], $row["commentContent"], $row["commentDateTime"]);
+			}
+		} catch(\Exception $exception) {
+			// if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($comment);
 	}
 }
 
