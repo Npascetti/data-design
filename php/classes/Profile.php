@@ -287,6 +287,50 @@ class Profile {
 
 	/**
 	 * deletes this Profile from mySQL
-	 */
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo) : void {
+
+		// create query template
+		$query = "DELETE FROM profile WHERE profileId = :profileId";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the place holder in the template
+		$parameters = ["profileId" => $this->profileId->getBytes()];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * update the Profile in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) : void {
+
+		// create query template
+		$query = "UPDATE profile SET profileUserName = :profileUserName, profileAvatar = :profileAvatar, profileHash = :profileHash, profileSalt = :profileSalt, profileActivationToken = :profileActivationToken WHERE profileId = :profileId";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["profileId" => $this->profileId->getBytes(), "profileUserName" => $this->profileUserName, "profileAvatar" => $this->profileAvatar, "profileHash" => $this->profileHash, "profileSalt" => $this->profileSalt, "profileActivationToken" => $this->profileActivationToken];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * gets the profile by profileId
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid | string $profileId profile id to search for
+	 * @return Profile | null Profile found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when a variable is not the correct type
+	 **/
+	public static function getProfileByProfileId(\PDO $pdo, $profileId) : ?Profile {
+		// sanitize the profileId before searching
+	}
 }
 ?>
