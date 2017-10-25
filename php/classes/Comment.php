@@ -255,6 +255,17 @@ class Comment {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 **/
+	public function insert(\PDO $pdo) : void {
+
+		// create query template
+		$query = "INSERT INTO comment(commentId, commentProfileId, commentPostId, commentCommentId, commentDateTime, commentContent) VALUES(:commentId, :commentProfileId, :commentPostId, :commentCommentId, :commentDateTime, :commentContent)";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the place holders in the template
+		$formattedDateTime = $this->commentDateTime->format("Y-m-d H:i:s.u");
+		$parameters = ["commentId" => $this->commentId->getBytes(), "commentProfileId" => $this->commentProfileId->getBytes(), "commentPostId" => $this->commentPostId->getBytes(), "commentCommentId" => $this->commentCommentId->getBytes(), "commentDateTime" => $formattedDateTime, "commentContent" => $this->commentContent];
+		$statement->execute($parameters);
+	}
 
 
 }
