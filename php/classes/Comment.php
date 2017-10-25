@@ -292,8 +292,16 @@ class Comment {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 **/
+	public function update(\PDO $pdo) : void {
 
+		// create query template
+		$query = "UPDATE comment SET commentProfileId = :commentProfileId, commentPostId = :commentPostId, commentCommentId = :commentCommentId, commentDateTime = :commentDateTime, commentContent = :commentContent WHERE commentId = :commentId";
+		$statement = $pdo->prepare($query);
 
+		$formattedDateTime = $this->commentDateTime->format("Y-m-d H:i:s.u");
+		$parameters = ["commentId" => $this->commentId->getBytes(), "commentProfileId" => $this->commentProfileId->getBytes(), "commentPostId" => $this->commentPostId->getBytes(), "commentCommentId" => $this->commentCommentId->getBytes(), "commentDateTime" => $formattedDateTime, "commentContent" => $this->commentContent];
+		$statement->execute($parameters);
+	}
 
 }
 
