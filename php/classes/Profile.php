@@ -375,6 +375,25 @@ class Profile {
 		$statement->execute();
 
 		// build an array of profiles
+		$profiles = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$profile = new Profile($row["profileId"], $row["profileUserName"], $row["profileAvatar"], $row["profileHash"], $row["profileSalt"], $row["profileActivationToken"]);
+				$profiles[$profiles->key()] = $profile;
+				$profiles->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($profiles);
 	}
+
+	/**
+	 * foramts the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
 }
 ?>
