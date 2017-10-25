@@ -361,6 +361,51 @@ class Profile {
 	}
 
 	/**
+	 * gets the Profile by profile user name
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $profileUserName profile user name to search for
+	 * @return \SplFixedArray SplFixedArray of profiles found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getProfileByProfileUserName(\PDO $pdo, string $profileUserName) : \SplFixedArray {
+		// sanitize the description before searching
+		$profileUserName = trim($profileUserName);
+		$profileUserName = filter_var($profileUserName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($profileUserName) === true) {
+			throw(new \PDOException("profile user name is invalid"));
+		}
+
+		// escape any mySQL wild cards
+		$profileUserName = str_replace("_", "\\_", str_replace("%", "\\%", $profileUserName));
+
+		// create query template
+		$query = "SELECT profileId, profileUserName, profileAvatar, profileHash, profileSalt, profileActivationToken FROM profile WHERE profileUserName LIKE :profileUserName";
+		$statement = $pdo->prepare($query);
+
+		// bind the profile user name to the place holder in the template
+		$profileUserName = "%profileUserName%";
+		$parameters = ["profileUserName" => $profileUserName];
+		$statement->execute($parameters);
+
+		// build an array of profiles
+		$profiles = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$profile = new Profile($row["profileId"], $row["profileUserName"], $row["profileAvatar"], $row["profileHash"], $row["profileSalt"], $row["profileActivationToken"]);
+				$profiles[$profiles->key()] = $profile;
+				$profiles->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($profiles);
+	}
+
+	/**
 	 * gets all Profiles
 	 *
 	 * @param \PDO $pdo PDO connection object
@@ -391,7 +436,7 @@ class Profile {
 	}
 
 	/**
-	 * foramts the state variables for JSON serialization
+	 * formats the state variables for JSON serialization
 	 *
 	 * @return array resulting state variables to serialize
 	 **/
