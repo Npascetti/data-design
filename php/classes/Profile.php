@@ -359,5 +359,22 @@ class Profile {
 		}
 		return($profile);
 	}
+
+	/**
+	 * gets all Profiles
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @return \SplFixedArray SplFixedArray of Profiles found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getAllProfiles(\PDO $pdo) : \SplFixedArray {
+		// create query template
+		$query = "SELECT profileId, profileUserName, profileAvatar, profileHash, profileSalt, profileActivationToken FROM profile";
+		$statement = $pdo->prepare($query);
+		$statement->execute();
+
+		// build an array of profiles
+	}
 }
 ?>
