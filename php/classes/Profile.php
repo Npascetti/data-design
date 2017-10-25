@@ -155,7 +155,7 @@ class Profile {
 	}
 
 	/**
-	 * accessor method for profile activaiton token
+	 * accessor method for profile activation token
 	 *
 	 * @return string value of profile activation token
 	 **/
@@ -266,5 +266,27 @@ class Profile {
 		//store the salt
 		$this->profileSalt = $newProfileSalt;
 	}
+
+	/**
+	 * Inserts this User into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo) : void {
+
+		// create query template
+		$query = "INSERT INTO profile(profileId, profileActivationToken, profileUserName, profileAvatar, profileHash, profileSalt) VALUES(:profileId, :profileActivationToken, :profileUserName, :profileAvatar, :profileHash, :profileSalt)";
+		$statement = $pdo->prepare($query);
+
+		//bind the member variables to the place holders in the template
+		$parameters = ["profileId" => $this->profileId->getBytes(), "profileActivationToken" => $this->profileActivationToken, "profileUserName" => $this->profileUserName, "profileAvatar" => $this->profileAvatar, "profileHash" => $this->profileHash, "profileSalt" => $this->profileSalt];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * deletes this Profile from mySQL
+	 */
 }
 ?>
