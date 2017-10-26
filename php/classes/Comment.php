@@ -429,7 +429,42 @@ class Comment {
 	 **/
 	public static function getAllComments(\PDO $pdo) : \SplFixedArray {
 		// create query template
-		$query =
+		$query = "SELECT commentId, commentProfileId, commentPostId, commentCommentId, commentContent, commentDateTime FROM comment";
+		$statement = $pdo->prepare($query);
+		$statement->execute();
+
+		// build an array of comments
+		$comments = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$comment = new Comment($row["commentId"], $row["commentProfileId"], $row["commentPostId"], $row["commentCommentId"], $row["commentContent"], $row["commentDateTime"]);
+				$comments[$comments->key()] = $comment;
+				$comments->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return ($comments);
+	}
+
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+
+		$fields["commentId"] = $this->commentId->toString();
+		$fields["commentProfileId"] = $this->commentProfileId->toString();
+		$fields["commentPostId"] = $this->commentPostId->toString();
+		$fields["commentCommentId"] = $this->commentCommentId->toString();
+
+		// format the date so that the front end can consume it
+		$fields["commentDateTime"] = round(floatval($this->commentDateTime->format("U.u")) * 1000);
+		return($fields);
 	}
 }
 
