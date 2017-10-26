@@ -400,6 +400,23 @@ class Comment {
 		$commentContent = str_replace("_", "\\_", str_replace("%", "\\%", $commentContent));
 
 		// create query template
+		$query = "SELECT commentId, commentProfileId, commentPostId, commentCommentId, commentContent, commentDateTime FROM comment WHERE commentContent LIKE :commentContent";
+		$statement = $pdo->prepare($query);
+
+		//build an array of comments
+		$comments = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$comment = new Comment($row["commentId"], $row["commentProfileId"], $row["commentPostId"], $row["commentCommentId"], $row["commentContent"], $row["commentDateTime"]);
+				$comments[$comments->key()] = $comment;
+				$comments->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($comments);
 	}
 }
 
