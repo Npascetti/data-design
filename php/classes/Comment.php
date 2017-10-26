@@ -361,6 +361,9 @@ class Comment {
 		}
 
 		// create query template
+		$query = "SELECT commentId, commentProfileId, commentPostId, commentCommentId, commentContent, commentDateTime FROM comment WHERE commentProfileId = :commentProfileId";
+		$statement = $pdo->prepare($query);
+		// build an array of comments
 	}
 }
 
