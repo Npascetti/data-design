@@ -378,6 +378,16 @@ class Comment {
 		}
 		return($comments);
 	}
+
+	/**
+	 * gets the Comment by content
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $commentContent comment content to search for
+	 * @return \SplFixedArray SplFixedArray of Comments found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
 }
 
 ?>
