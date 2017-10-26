@@ -418,6 +418,19 @@ class Comment {
 		}
 		return($comments);
 	}
+
+	/**
+	 * gets all Comments
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @return \SplFixedArray SplFixedArray of Comments found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getAllComments(\PDO $pdo) : \SplFixedArray {
+		// create query template
+		$query =
+	}
 }
 
 ?>
