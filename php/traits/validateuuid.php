@@ -1,6 +1,6 @@
 <?php
-namespace php\traits;
-/*require_once(dirname(__DIR__, 2) . "/../vendor/autoload.php");*/
+namespace Edu\Cnm\DataDesign;
+require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
 /**
  * Trait to validate a uuid
@@ -23,7 +23,7 @@ trait ValidateUuid {
 	 * @throws \InvalidArgumentException if $newMisquoteId is not a valid uuid
 	 * @throws \RangeException if $newMisquoteId is not a valid uuid v4
 	 **/
-	public static function validateUuid($newUuid) : Uuid {
+	private static function validateUuid($newUuid) : Uuid {
 		// verify a string uuid
 		if(gettype($newUuid) === "string") {
 			// 16 characters is binary data from mySQL - convert to string and fall to next if block
@@ -31,7 +31,7 @@ trait ValidateUuid {
 				$newUuid = bin2hex($newUuid);
 				$newUuid = substr($newUuid, 0, 8) . "-" . substr($newUuid, 8, 4) . "-" . substr($newUuid,12, 4) . "-" . substr($newUuid, 16, 4) . "-" . substr($newUuid, 20, 12);
 			}
-			// 32 characters is a human readable uuid
+			// 36 characters is a human readable uuid
 			if(strlen($newUuid) === 36) {
 				if(Uuid::isValid($newUuid) === false) {
 					throw(new \InvalidArgumentException("invalid uuid"));

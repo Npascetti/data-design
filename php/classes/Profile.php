@@ -1,4 +1,7 @@
 <?php
+require "../../vendor/autoload.php";
+
+use Ramsey\Uuid\Uuid;
 /**
  * A class representing a profile on Reddit
  *

@@ -216,7 +216,7 @@ class Post {
 
 		//store the post datetime using the ValidateDate trait
 		try {
-			$newPostDateTime = self::validateDateTime($newPostDateTime);
+			$newPostDateTime = self::validateDate($newPostDateTime);
 		} catch(\InvalidArgumentException | \RangeException $exception) {
 			/*$exceptionType = get_class($exception:)
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));*/

@@ -1,5 +1,7 @@
 <?php
+require "../../vendor/autoload.php";
 
+use Ramsey\Uuid\Uuid;
 /**
  * A comment on Reddit
  *
