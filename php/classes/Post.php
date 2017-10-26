@@ -1,14 +1,12 @@
 <?php
-require "../../vendor/autoload.php";
 
-use Ramsey\Uuid\Uuid;
 /**
  *A post on Reddit
  *
  * @author Nick Pascetti <npascetti@gmail.com>
  * @version 1.0.0
  * */
-class Post {
+class Post implements \JsonSerializable {
 	/**
 	 * id for the Post; this is the primary key
 	 * @var Uuid $postId
