@@ -388,6 +388,19 @@ class Comment {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
+	public static function getCommentByCommentContent(\PDO $pdo, string $commentContent) : \SplFixedArray {
+		// sanitize the description before searching
+		$commentContent = trim($commentContent);
+		$commentContent = filter_var($commentContent, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($commentContent) === true) {
+			throw(new \PDOException("comment content is invalid"));
+		}
+
+		// escape any mySQL wild cards
+		$commentContent = str_replace("_", "\\_", str_replace("%", "\\%", $commentContent));
+
+		// create query template
+	}
 }
 
 ?>
